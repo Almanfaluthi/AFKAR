@@ -40,6 +40,9 @@ Cost-Effective Diagnostics: Native BIC-Driven Feature Selection to isolate Elite
 
 # 🚀 Installation
 You can install the development version of AFKAR like so:
+1. install [R](https://www.r-project.org/)
+2. install [R-studio](https://posit.co/downloads)
+3. install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) #windows
 
 # install.packages("devtools")
 devtools::install_github("Almanfaluthi/AFKAR")

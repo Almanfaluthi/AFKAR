@@ -66,7 +66,7 @@ Dendrogram and a Circular Syndemic Web Graph.
 # Run Unsupervised Network Detection
 dis_network <- A6_unsupervised_network(
   data = df_A6,
-  features = names(emr_data),
+  features = names(df_A6),
   min_weight = 0.15,
   num_communities = 2,
   plot_result = TRUE,

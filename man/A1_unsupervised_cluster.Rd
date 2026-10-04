@@ -9,39 +9,48 @@ A1_unsupervised_cluster(
   cols,
   k_max = 10,
   force_k = NULL,
-  palette = c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33"),
+  colors = c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33"),
   reverse_palette = FALSE,
+  plot_result = TRUE,
+  save_plot = FALSE,
+  save_prefix = "digimed",
   footer = TRUE,
-  save_plot = TRUE,
-  save_prefix = "digimed"
+  cex = 1,
+  font = 1,
+  family = "sans"
 )
 }
 \arguments{
 \item{data}{A data.frame containing the dataset.}
 
-\item{cols}{A character vector of column names to be used for clustering.
-Must be numeric columns.}
+\item{cols}{A character vector of column names to be used for clustering (must be numeric).}
 
-\item{k_max}{Integer. The maximum number of clusters to evaluate for the
-Elbow method (default: 10).}
+\item{k_max}{Integer. Maximum number of clusters to evaluate (default: 10).}
 
-\item{force_k}{Integer or NULL. If provided, overrides the automatic optimal
-k detection and forces the algorithm to use this number of clusters.}
+\item{force_k}{Integer or NULL. Overrides automatic k detection to force a specific number of clusters.}
 
-\item{palette}{Character vector of colors for plotting.}
+\item{colors}{Character vector of colors for plotting clusters.}
 
 \item{reverse_palette}{Logical. If TRUE, reverses the order of the color palette.}
 
-\item{footer}{Logical. If TRUE, adds a reproducibility footer to the plots.}
+\item{plot_result}{Logical. If TRUE, generates the dual 1x2 panel dashboards.}
 
-\item{save_plot}{Logical. If TRUE, saves the plots as 4K resolution PNGs.}
+\item{save_plot}{Logical. If TRUE, saves the plots as two high-resolution 4K PNGs.}
 
 \item{save_prefix}{Character. A prefix to add to the saved plot filenames.}
+
+\item{footer}{Logical. If TRUE, adds a reproducible generation footer to the plots.}
+
+\item{cex}{Numeric. Text and symbol scaling factor.}
+
+\item{font}{Numeric. Font style (1 = plain, 2 = bold, 3 = italic, 4 = bold italic).}
+
+\item{family}{Character. Font family to use for plotting (e.g., "sans", "serif").}
 }
 \value{
 A list containing:
 \itemize{
-\item \code{data_clustered}: The original dataset with a new 'cluster' column.
+\item \code{data_clustered}: The original dataset with a new 'Cluster' column.
 \item \code{cluster_summary}: A data.frame showing the mean of each variable per cluster.
 \item \code{optimal_k}: The calculated or forced optimal number of clusters.
 \item \code{hopkins_stat}: The estimated Hopkins statistic for cluster tendency.
@@ -49,20 +58,23 @@ A list containing:
 }
 \description{
 Performs unsupervised machine learning (K-Means and Hierarchical Clustering)
-strictly using Base R. It automatically evaluates cluster tendency,
-determines the optimal number of clusters using the mathematical Elbow method,
-and generates beautiful, CRAN-ready visualizations (WSS Curve, Dendrogram,
-and PCA-based Cluster Plot with Convex Hulls).
+strictly using Base R. Evaluates cluster tendency, determines optimal k via
+the Elbow method, and generates two sequential 4K-ready 1x2 dashboards:
+\enumerate{
+\item Cluster Tendency Profile (Elbow Curve & Dendrogram).
+\item Clinical Phenotype Profile (PCA Scatter Space & Feature Z-Score Barplot).
+}
 }
 \examples{
-# Use built-in iris dataset for clinical-like simulation
-df <- iris
-# Run unsupervised clustering on numeric columns
-res <- A1_unsupervised_cluster(
+# Run Unsupervised Clustering
+res_cluster <- A1_unsupervised_cluster(
   data = df_A1,
-  cols = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"),
-  save_plot = TRUE
+  cols = c("Age", "BMI", "Fasting_Glucose", "Total_Cholesterol"),
+  k_max = 8,
+  plot_result = TRUE,
+  save_plot = FALSE
 )
-head(res$data_clustered)
-print(res$cluster_summary)
+
+# View clinical cluster summary
+print(res_cluster$cluster_summary)
 }

@@ -49,7 +49,7 @@
 #'
 #' # Run Unsupervised Text Mining
 #' res_text <- A5_unsupervised_textmining(
-#'   text_vector = df_A5,
+#'   text_vector = dummy_cppt,
 #'   num_topics = 2,
 #'   top_terms = 5,
 #'   stopwords = id_stopwords,

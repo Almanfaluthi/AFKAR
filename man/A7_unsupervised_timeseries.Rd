@@ -60,26 +60,9 @@ implementation of Dynamic Time Warping (DTW). It calculates the DTW distance
 matrix and applies hierarchical clustering to find hidden trajectory patterns.
 }
 \examples{
-# Generate dummy ICU time-series data (e.g., Mean Arterial Pressure over 5 days)
-set.seed(2027)
-n_patients <- 45 # Kept small for fast native DTW execution in CRAN checks
-
-# Cluster 1: Stable then Sudden Drop (e.g., Septic Shock on Day 4)
-c1 <- t(replicate(15, c(rnorm(3, 85, 2), rnorm(1, 60, 5), rnorm(1, 55, 5))))
-
-# Cluster 2: Consistently High & Wavy (e.g., Uncontrolled Hypertension)
-c2 <- t(replicate(15, rnorm(5, 100, 8)))
-
-# Cluster 3: Stable Normal (e.g., Good Recovery)
-c3 <- t(replicate(15, rnorm(5, 80, 3)))
-
-icu_data <- data.frame(rbind(c1, c2, c3))
-colnames(icu_data) <- paste0("Day_", 1:5)
-icu_data$Patient_ID <- paste0("PT_", 1:n_patients)
-
 # Run Unsupervised Time-Series Clustering
 res_ts <- A7_unsupervised_timeseries(
-  data = icu_data,
+  data = df_A7,
   time_features = paste0("Day_", 1:5),
   num_clusters = 3,
   plot_result = TRUE,

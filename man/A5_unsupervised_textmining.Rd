@@ -62,13 +62,23 @@ Latent Semantic Analysis (LSA) via Singular Value Decomposition (SVD).
 Implemented entirely in Base R without external NLP dependencies.
 }
 \examples{
+# Generate dummy clinical free text (Indonesian EMR & Surveys)
+dummy_cppt <- c(
+  "Pasien datang dengan keluhan demam tinggi sejak 3 hari lalu, nyeri sendi hebat, dan ruam merah di kulit. Suspek Dengue.",
+  "Antrean di farmasi sangat lambat, saya menunggu obat sampai 2 jam. Pelayanan perawat kurang ramah.",
+  "Demam hari ke-4, trombosit turun, ruam mulai muncul di lengan, pasien mengeluh pusing dan mual.",
+  "Ruang tunggu poli anak panas sekali, AC mati, dan pelayanan obat lambat.",
+  "Suhu tubuh 39 derajat, ada bintik merah, ptekie positif, curiga infeksi virus tropis.",
+  "Sistem antrean BPJS membingungkan, loket pendaftaran antre panjang, obat lama keluar."
+)
+
 # Define basic Indonesian clinical stopwords
 id_stopwords <- c("dan", "di", "dengan", "ke", "dari", "ini", "itu", "yang",
                   "pada", "untuk", "saya", "ada", "sejak", "hari", "lalu")
 
 # Run Unsupervised Text Mining
 res_text <- A5_unsupervised_textmining(
-  text_vector = df_A5,
+  text_vector = dummy_cppt,
   num_topics = 2,
   top_terms = 5,
   stopwords = id_stopwords,
