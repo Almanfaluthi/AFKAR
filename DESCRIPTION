@@ -1,12 +1,24 @@
 Package: AFKAR
-Title: What the Package Does (One Line, Title Case)
+Title: Algorithmic Framework for Knowledge Augmentation in R
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Muhammad", "Almanfaluthi", email = "m.luthfi.a@ump.ac.id", role = c("aut", "cre")),
+    person("Khusnul", "Effendy", email = "fathoni_khusnul@ub.ac.id", role = "aut"),
+    person("Satini", "Yuniarsih", email = "fathoni_khusnul@ub.ac.id", role = "aut"),
+    person("Stefani", "Widodo", email = "oei.stefani@ump.ac.id", role = "aut"),
+    person("Zuhrotun", "Ulya", email = "dr.zulya@ub.ac.id", role = "aut"),
+    person("Shalahuddin", "Maulidi", email = "drg.shalahuddin@gmail.com", role = "aut"),
+    person("Rara", "Tarika", email = "raratarikayunizar@gmail.com", role = "aut"),
+    person("Abidah", "Effendy", email = "asafithrieffendi@gmail.com", role = "aut")
+  )
+Description: Performing basic machine learning algorithm as easy as possible.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Depends: 
+    R (>= 3.5)
+LazyData: true
 URL: https://github.com/Almanfaluthi/AFKAR
 BugReports: https://github.com/Almanfaluthi/AFKAR/issues
+LazyDataCompression: xz

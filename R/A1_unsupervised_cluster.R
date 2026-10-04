@@ -27,9 +27,9 @@
 #'   \item \code{hopkins_stat}: The estimated Hopkins statistic for cluster tendency.
 #' }
 #'
-#' @importFrom stats dist runif kmeans hclust cutree prcomp aggregate
-#' @importFrom graphics par plot lines points mtext rect.hclust chull polygon legend
-#' @importFrom grDevices dev.copy dev.off png adjustcolor
+#' @importFrom stats dist runif kmeans hclust cutree prcomp aggregate complete.cases rect.hclust
+#' @importFrom graphics par plot lines points mtext polygon legend
+#' @importFrom grDevices dev.copy dev.off png adjustcolor chull
 #'
 #' @export
 #'
@@ -38,22 +38,22 @@
 #' df <- iris
 #' # Run unsupervised clustering on numeric columns
 #' res <- A1_unsupervised_cluster(
-#'   data = df,
+#'   data = df_A1,
 #'   cols = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"),
-#'   save_plot = FALSE
+#'   save_plot = TRUE
 #' )
 #' head(res$data_clustered)
 #' print(res$cluster_summary)
 A1_unsupervised_cluster <- function(data,
-                                       cols,
-                                       k_max = 10,
-                                       force_k = NULL,
-                                       palette = c("#E41A1C", "#377EB8", "#4DAF4A",
-                                                   "#984EA3", "#FF7F00", "#FFFF33"),
-                                       reverse_palette = FALSE,
-                                       footer = TRUE,
-                                       save_plot = FALSE,
-                                       save_prefix = "digimed") {
+                                    cols,
+                                    k_max = 10,
+                                    force_k = NULL,
+                                    palette = c("#E41A1C", "#377EB8", "#4DAF4A",
+                                                "#984EA3", "#FF7F00", "#FFFF33"),
+                                    reverse_palette = FALSE,
+                                    footer = TRUE,
+                                    save_plot = TRUE,
+                                    save_prefix = "digimed") {
 
   # 1. ROBUST ERROR HANDLING & VALIDATION
   stopifnot("Input 'data' must be a data.frame." = is.data.frame(data))
@@ -75,7 +75,7 @@ A1_unsupervised_cluster <- function(data,
   }
 
   # Remove NAs strictly for the clustering subset
-  complete_cases_idx <- complete.cases(df_ml)
+  complete_cases_idx <- stats::complete.cases(df_ml)
   if (sum(!complete_cases_idx) > 0) {
     warning(paste(sum(!complete_cases_idx), "rows with missing values were removed prior to modeling."))
   }
@@ -93,7 +93,6 @@ A1_unsupervised_cluster <- function(data,
   actual_k_max <- min(k_max, n_rows - 1)
 
   # 3. CLUSTER TENDENCY (Custom Hopkins Statistic Estimation)
-  # Generate uniform random data in the same space
   m <- min(50, floor(n_rows * 0.1))
   if (m < 2) m <- 2
   sample_idx <- sample(1:n_rows, m)
@@ -186,7 +185,7 @@ A1_unsupervised_cluster <- function(data,
   add_footer()
 
   if (save_plot) {
-    filename_1 <- paste0("afkar_cluster_", timestamp_str, "_", save_prefix, "_1_elbow.png")
+    filename_1 <- paste0(save_prefix, "_", timestamp_str, "_1_elbow.png")
     grDevices::dev.copy(grDevices::png, filename = filename_1, width = 3840, height = 2160, res = 300)
     grDevices::dev.off()
   }
@@ -198,13 +197,12 @@ A1_unsupervised_cluster <- function(data,
   graphics::par(mar = c(6, 4, 4, 2) + 0.1)
   graphics::plot(hc, hang = -1, cex = 0.6, main = "Hierarchical Clustering Dendrogram",
                  xlab = "Observations", ylab = "Height", sub = "")
-  # Add beautiful borders corresponding to palettes
   rect_colors <- rep(palette, length.out = optimal_k)
-  graphics::rect.hclust(hc, k = optimal_k, border = rect_colors)
+  stats::rect.hclust(hc, k = optimal_k, border = rect_colors)
   add_footer()
 
   if (save_plot) {
-    filename_2 <- paste0("afkar_cluster_", timestamp_str, "_", save_prefix, "_2_dendro.png")
+    filename_2 <- paste0(save_prefix, "_", timestamp_str, "_2_dendro.png")
     grDevices::dev.copy(grDevices::png, filename = filename_2, width = 3840, height = 2160, res = 300)
     grDevices::dev.off()
   }
@@ -228,8 +226,8 @@ A1_unsupervised_cluster <- function(data,
     if (nrow(pts) >= 3) {
       hull_idx <- grDevices::chull(pts)
       hull_idx <- c(hull_idx, hull_idx[1]) # close polygon
-      grDevices::polygon(pts[hull_idx, ], border = palette[i],
-                         col = grDevices::adjustcolor(palette[i], alpha.f = 0.2))
+      graphics::polygon(pts[hull_idx, ], border = palette[i],
+                        col = grDevices::adjustcolor(palette[i], alpha.f = 0.2))
     }
   }
 
@@ -239,7 +237,7 @@ A1_unsupervised_cluster <- function(data,
   add_footer()
 
   if (save_plot) {
-    filename_3 <- paste0("afkar_cluster_", timestamp_str, "_", save_prefix, "_3_pca.png")
+    filename_3 <- paste0(save_prefix, "_", timestamp_str, "_3_pca.png")
     grDevices::dev.copy(grDevices::png, filename = filename_3, width = 3840, height = 2160, res = 300)
     grDevices::dev.off()
   }
@@ -248,9 +246,9 @@ A1_unsupervised_cluster <- function(data,
   graphics::par(old_par)
 
   # 7. RETURN OBJECTS
-  cat(sprintf("\n[AFKAR ML] Unsupervised clustering completed successfully.\n"))
-  cat(sprintf("Estimated Hopkins Statistic (Cluster Tendency): %.3f (>0.5 suggests meaningful clusters)\n", hopkins_stat))
-  cat(sprintf("Optimal Clusters Formed (k): %d\n", optimal_k))
+  message(sprintf("[AFKAR ML] Unsupervised clustering completed successfully."))
+  message(sprintf("Estimated Hopkins Statistic: %.3f", hopkins_stat))
+  message(sprintf("Optimal Clusters (k): %d", optimal_k))
 
   return(list(
     data_clustered = original_data,
