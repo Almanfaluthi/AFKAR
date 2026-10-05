@@ -112,91 +112,58 @@ Clinical Machine Learning modules:
 
 ``` r
 library(AFKAR)
-
 # B3: Imbalanced Rare Event Handler (SMOTE-Lite)
 # Handles fatal rare diseases (<5% prevalence) using native synthetic oversampling.
-B3_supervised_rare(df_B3, target_var = "anaphylaxis", method = "SMOTE", save_plot = TRUE)
+B3_supervised_rare(df_B3, target_var = "anaphylaxis", method = "SMOTE", save_plot = FALSE)
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="100%" /><img src="man/figures/README-example-2.png" width="100%" />
 
-    #> Saved: B3_Topology_20261005_070155_.png
+``` r
+# B4: Length of Stay (LoS) Forecaster for Hospital BPR
+# Predicts exact days a patient will stay, optimizing bed management.
+B4_supervised_los(df_B4, target_var = "los_days", save_plot = FALSE)
+```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-3.png" width="100%" /><img src="man/figures/README-example-4.png" width="100%" />
 
-    #> Saved: B3_Diagnostics_20261005_070155_.png
+``` r
+# B5: Time-to-Event Survival Engine (Kaplan-Meier & Log-Hazard)
+# Predicts exact time-to-relapse for chronic/oncology patients.
+B5_supervised_survival(df_B5, time_var = "time_to_relapse", status_var = "relapse_status", save_plot = FALSE)
+```
 
-    # B4: Length of Stay (LoS) Forecaster for Hospital BPR
-    # Predicts exact days a patient will stay, optimizing bed management.
-    B4_supervised_los(df_B4, target_var = "los_days", save_plot = TRUE)
+<img src="man/figures/README-example-5.png" width="100%" /><img src="man/figures/README-example-6.png" width="100%" />
 
-<img src="man/figures/README-example-3.png" width="100%" />
+``` r
+# B6: Pharmacogenomics Precision Dosage Predictor
+# Calculates exact personalized drug dosage (e.g., Warfarin) with absolute zero failsafe.
+B6_supervised_precision(df_B6, target_var = "weekly_dose_mg", save_plot = FALSE)
+```
 
-    #> Saved: B4_Topology_20261005_070157_.png
+<img src="man/figures/README-example-7.png" width="100%" /><img src="man/figures/README-example-8.png" width="100%" />
 
-<img src="man/figures/README-example-4.png" width="100%" />
+``` r
+# B7: Automated Ensemble Benchmark (Multi-Algorithm Consensus)
+# Deploys 5 algorithms simultaneously and creates a Super Model via Majority Voting.
+B7_supervised_consensus(df_B7, target_var = "sepsis_status", save_plot = FALSE)
+```
 
-    #> Saved: B4_Diagnostics_20261005_070157_.png
+<img src="man/figures/README-example-9.png" width="100%" /><img src="man/figures/README-example-10.png" width="100%" />
 
-    # B5: Time-to-Event Survival Engine (Kaplan-Meier & Log-Hazard)
-    # Predicts exact time-to-relapse for chronic/oncology patients.
-    B5_supervised_survival(df_B5, time_var = "time_to_relapse", status_var = "relapse_status", save_plot = TRUE)
+``` r
+# B8: Native BIC-Driven Feature Selection (Elite Biomarkers)
+# Recursively eliminates noise to find the top 3 most cost-effective diagnostic lab tests.
+B8_supervised_biomarker(df_B8, target_var = "disease_status", max_features = 3, save_plot = FALSE)
+```
 
-<img src="man/figures/README-example-5.png" width="100%" />
+<img src="man/figures/README-example-11.png" width="100%" /><img src="man/figures/README-example-12.png" width="100%" />
 
-    #> Saved: B5_Topology_20261005_070158_.png
-
-<img src="man/figures/README-example-6.png" width="100%" />
-
-    #> Saved: B5_Diagnostics_20261005_070158_.png
-
-    # B6: Pharmacogenomics Precision Dosage Predictor
-    # Calculates exact personalized drug dosage (e.g., Warfarin) with absolute zero failsafe.
-    B6_supervised_precision(df_B6, target_var = "weekly_dose_mg", save_plot = TRUE)
-
-<img src="man/figures/README-example-7.png" width="100%" />
-
-    #> Saved: B6_Topology_20261005_070159_.png
-
-<img src="man/figures/README-example-8.png" width="100%" />
-
-    #> Saved: B6_Diagnostics_20261005_070159_.png
-
-    # B7: Automated Ensemble Benchmark (Multi-Algorithm Consensus)
-    # Deploys 5 algorithms simultaneously and creates a Super Model via Majority Voting.
-    B7_supervised_consensus(df_B7, target_var = "sepsis_status", save_plot = TRUE)
-
-<img src="man/figures/README-example-9.png" width="100%" />
-
-    #> Saved: B7_Topology_20261005_070201_.png
-
-<img src="man/figures/README-example-10.png" width="100%" />
-
-    #> Saved: B7_Diagnostics_20261005_070201_.png
-
-    # B8: Native BIC-Driven Feature Selection (Elite Biomarkers)
-    # Recursively eliminates noise to find the top 3 most cost-effective diagnostic lab tests.
-    B8_supervised_biomarker(df_B8, target_var = "disease_status", max_features = 3, save_plot = TRUE)
-
-<img src="man/figures/README-example-11.png" width="100%" />
-
-    #> Saved: B8_Topology_20261005_070204_.png
-
-<img src="man/figures/README-example-12.png" width="100%" />
-
-    #> Saved: B8_Diagnostics_20261005_070204_.png
-
-    # B9: Explainable AI (XAI) / Local Patient SHAP Alternative
-    # Opens the black box: Explains exactly WHY a specific patient is predicted to have a fatal event.
-    B9_supervised_explain(df_B9, target_var = "shock_event", patient_index = 1, save_plot = TRUE)
-
-<img src="man/figures/README-example-13.png" width="100%" />
-
-    #> Saved Plot 1: B9_Plot1_Explainability_20261005_070205_.png
-
-<img src="man/figures/README-example-14.png" width="100%" />
-
-    #> Saved Plot 2: B9_Plot2_ClinicalProfile_20261005_070205_.png
+``` r
+# B9: Explainable AI (XAI) / Local Patient SHAP Alternative
+# Opens the black box: Explains exactly WHY a specific patient is predicted to have a fatal event.
+B9_supervised_explain(df_B9, target_var = "shock_event", patient_index = 1, save_plot = FALSE)
+```
 
 🤝 Contributing Contributions, issues, and feature requests are welcome!
 Feel free to check the issues page. If you are using AFKAR for your
