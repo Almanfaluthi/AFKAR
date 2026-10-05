@@ -48,23 +48,39 @@ You can install the development version of AFKAR like so:
 devtools::install_github("Almanfaluthi/AFKAR")
 
 #🛠️ Architecture & Modules (Un-Supervised Clinical AI)
+
 A1_unsupervised_cluster(): Clinical Clustering
+
 A2_unsupervised_anomaly(): Anomaly detection and Fraud Analysis
+
 A3_unsupervised_reduction(): Dimentionalty reduction to counter multicollinearity
+
 A4_unsupervised_association(): Association unsupervised analysis
+
 A5_unsupervised_textmining(): Text mining for Topic determination
+
 A6_unsupervised_network(): Network Analysis
+
 A7_unsupervised_timeseries(): Time series detection
 
 #🛠️ Architecture & Modules (Supervised Clinical AI)
+
 B1_supervised_screening(): High-Sensitivity Diagnostic Triage.
+
 B2_supervised_triage(): Multi-Class Severity Scoring.
+
 B3_supervised_rare(): Imbalanced Event Handler (SMOTE-Lite for Rare Diseases).
+
 B4_supervised_los(): Exact Length of Stay (LoS) Forecaster for BPJS/Hospital BPR.
+
 B5_supervised_survival(): Time-to-Event Survival Engine (Kaplan-Meier & Cox).
+
 B6_supervised_precision(): Pharmacogenomics & Precision Dosage Predictor.
+
 B7_supervised_consensus(): Automated Ensemble Benchmark (Multidisciplinary AI Board).
+
 B8_supervised_biomarker(): Native BIC-Driven Feature Selection (Cost-Effective Diagnostics).
+
 B9_supervised_explain(): Explainable AI (XAI) / Local Patient SHAP Alternative.
 
 📖 Example
@@ -72,34 +88,27 @@ This is a basic example which shows you how to deploy AFKAR's Clinical Machine L
 
 ```{r example}
 library(AFKAR)
-
 # B3: Imbalanced Rare Event Handler (SMOTE-Lite)
 # Handles fatal rare diseases (<5% prevalence) using native synthetic oversampling.
-B3_supervised_rare(df_B3, target_var = "anaphylaxis", method = "SMOTE", save_plot = TRUE)
-
+B3_supervised_rare(df_B3, target_var = "anaphylaxis", method = "SMOTE", save_plot = FALSE)
 # B4: Length of Stay (LoS) Forecaster for Hospital BPR
 # Predicts exact days a patient will stay, optimizing bed management.
-B4_supervised_los(df_B4, target_var = "los_days", save_plot = TRUE)
-
+B4_supervised_los(df_B4, target_var = "los_days", save_plot = FALSE)
 # B5: Time-to-Event Survival Engine (Kaplan-Meier & Log-Hazard)
 # Predicts exact time-to-relapse for chronic/oncology patients.
-B5_supervised_survival(df_B5, time_var = "time_to_relapse", status_var = "relapse_status", save_plot = TRUE)
-
+B5_supervised_survival(df_B5, time_var = "time_to_relapse", status_var = "relapse_status", save_plot = FALSE)
 # B6: Pharmacogenomics Precision Dosage Predictor
 # Calculates exact personalized drug dosage (e.g., Warfarin) with absolute zero failsafe.
-B6_supervised_precision(df_B6, target_var = "weekly_dose_mg", save_plot = TRUE)
-
+B6_supervised_precision(df_B6, target_var = "weekly_dose_mg", save_plot = FALSE)
 # B7: Automated Ensemble Benchmark (Multi-Algorithm Consensus)
 # Deploys 5 algorithms simultaneously and creates a Super Model via Majority Voting.
-B7_supervised_consensus(df_B7, target_var = "sepsis_status", save_plot = TRUE)
-
+B7_supervised_consensus(df_B7, target_var = "sepsis_status", save_plot = FALSE)
 # B8: Native BIC-Driven Feature Selection (Elite Biomarkers)
 # Recursively eliminates noise to find the top 3 most cost-effective diagnostic lab tests.
-B8_supervised_biomarker(df_B8, target_var = "disease_status", max_features = 3, save_plot = TRUE)
-
+B8_supervised_biomarker(df_B8, target_var = "disease_status", max_features = 3, save_plot = FALSE)
 # B9: Explainable AI (XAI) / Local Patient SHAP Alternative
 # Opens the black box: Explains exactly WHY a specific patient is predicted to have a fatal event.
-B9_supervised_explain(df_B9, target_var = "shock_event", patient_index = 1, save_plot = TRUE)
+B9_supervised_explain(df_B9, target_var = "shock_event", patient_index = 1, save_plot = FALSE)
 ```
 
 🤝 Contributing
