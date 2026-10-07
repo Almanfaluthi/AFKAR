@@ -6,28 +6,32 @@
 AFKAR (Algorithmic Framework for Knowledge Augmentation in R) is a
 machine learning and statistical framework specifically designed for
 modern clinical research, hospital management (Business Process
-Reengineering), and Precision Medicine.
+Reengineering), and Precision Medicine. Bypassing heavy third-party
+packages, AFKAR provides high-performance, mathematically rigorous
+algorithms that output publication-ready 4K clinical dashboards suitable
+for top-tier medical journals (e.g., Lancet, NEJM).
 
-Bypassing heavy third-party packages, AFKAR provides high-performance,
-mathematically rigorous algorithms that output publication-ready 4K
-clinical dashboards suitable for top-tier medical journals (e.g.,
-Lancet, NEJM).
+<figure>
+<img src="man/figures/A5.jpg" alt="A5_Teams" />
+<figcaption aria-hidden="true">A5_Teams</figcaption>
+</figure>
 
 # ✨ Key Features:
 
-Strict Clinical Boundary Checks: Automatically fades (grays out)
-Non-Significant variables when Odds Ratio (OR), Hazard Ratio (HR), or
-Effect Sizes cross the null boundary (1.0 or 0.0).
+- Strict Clinical Boundary Checks: Automatically fades (grays out)
+  Non-Significant variables when Odds Ratio (OR), Hazard Ratio (HR), or
+  Effect Sizes cross the null boundary (1.0 or 0.0).
 
-Pillar-Aligned Forest Plots: Ensures extreme variables or long clinical
-names never overlap with Confidence Intervals in output plots.
+- Pillar-Aligned Forest Plots: Ensures extreme variables or long
+  clinical names never overlap with Confidence Intervals in output
+  plots.
 
-Clinical Accountability (XAI): Generates explainable Tornado and
-Waterfall charts for individual patients, preventing black-box
-malpractice.
+- Clinical Accountability (XAI): Generates explainable Tornado and
+  Waterfall charts for individual patients, preventing black-box
+  malpractice.
 
-Cost-Effective Diagnostics: Native BIC-Driven Feature Selection to
-isolate Elite Biomarkers and minimize laboratory costs.
+- Cost-Effective Diagnostics: Native BIC-Driven Feature Selection to
+  isolate Elite Biomarkers and minimize laboratory costs.
 
 # 👥 Authors / Contributors
 
@@ -54,56 +58,40 @@ isolate Elite Biomarkers and minimize laboratory costs.
 
 # 🚀 Installation
 
-You can install the development version of AFKAR like so: 1. install
-[R](https://www.r-project.org/) 2. install
-[R-studio](https://posit.co/downloads) 3. install
-[Rtools](https://cran.r-project.org/bin/windows/Rtools/) \#windows
+You can install the development version of AFKAR like so:
 
-# install.packages(“devtools”)
+1.  install [R](https://www.r-project.org/)
 
-devtools::install_github(“Almanfaluthi/AFKAR”)
+2.  install [R-studio](https://posit.co/downloads)
 
-\#🛠️ Architecture & Modules (Un-Supervised Clinical AI)
+3.  install [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
+    \#windows
 
-A1_unsupervised_cluster(): Clinical Clustering
+4.  install.packages(“devtools”) \#paste in your console (lower left)
 
-A2_unsupervised_anomaly(): Anomaly detection and Fraud Analysis
+5.  devtools::install_github(“Almanfaluthi/AFKAR”) \#paste in your
+    console (lower left)
 
+\#🛠️ Architecture & Modules (Un-Supervised Clinical AI) \*
+A1_unsupervised_cluster(): Clinical Clustering \*
+A2_unsupervised_anomaly(): Anomaly detection and Fraud Analysis \*
 A3_unsupervised_reduction(): Dimentionalty reduction to counter
-multicollinearity
-
-A4_unsupervised_association(): Association unsupervised analysis
-
-A5_unsupervised_textmining(): Text mining for Topic determination
-
-A6_unsupervised_network(): Network Analysis
-
+multicollinearity \* A4_unsupervised_association(): Association
+unsupervised analysis \* A5_unsupervised_textmining(): Text mining for
+Topic determination \* A6_unsupervised_network(): Network Analysis \*
 A7_unsupervised_timeseries(): Time series detection
 
-\#🛠️ Architecture & Modules (Supervised Clinical AI)
-
-B1_supervised_screening(): High-Sensitivity Diagnostic Triage.
-
-B2_supervised_triage(): Multi-Class Severity Scoring.
-
+\#🛠️ Architecture & Modules (Supervised Clinical AI) \*
+B1_supervised_screening(): High-Sensitivity Diagnostic Triage. \*
+B2_supervised_triage(): Multi-Class Severity Scoring. \*
 B3_supervised_rare(): Imbalanced Event Handler (SMOTE-Lite for Rare
-Diseases).
-
-B4_supervised_los(): Exact Length of Stay (LoS) Forecaster for
-BPJS/Hospital BPR.
-
-B5_supervised_survival(): Time-to-Event Survival Engine (Kaplan-Meier &
-Cox).
-
-B6_supervised_precision(): Pharmacogenomics & Precision Dosage
-Predictor.
-
+Diseases). \* B4_supervised_los(): Exact Length of Stay (LoS) Forecaster
+for BPJS/Hospital BPR. \* B5_supervised_survival(): Time-to-Event
+Survival Engine (Kaplan-Meier & Cox). \* B6_supervised_precision():
+Pharmacogenomics & Precision Dosage Predictor. \*
 B7_supervised_consensus(): Automated Ensemble Benchmark
-(Multidisciplinary AI Board).
-
-B8_supervised_biomarker(): Native BIC-Driven Feature Selection
-(Cost-Effective Diagnostics).
-
+(Multidisciplinary AI Board). \* B8_supervised_biomarker(): Native
+BIC-Driven Feature Selection (Cost-Effective Diagnostics). \*
 B9_supervised_explain(): Explainable AI (XAI) / Local Patient SHAP
 Alternative.
 
