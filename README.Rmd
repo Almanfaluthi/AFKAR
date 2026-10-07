@@ -51,25 +51,15 @@ You can install the development version of AFKAR like so:
 
 5. devtools::install_github("Almanfaluthi/AFKAR") #paste in your console (lower left)
 
-#🛠️ Architecture & Modules (Un-Supervised Clinical AI)
+# 🛠️ Architecture & Modules (Un-Supervised Clinical AI)
 * A1_unsupervised_cluster(): Clinical Clustering
 * A2_unsupervised_anomaly(): Anomaly detection and Fraud Analysis
 * A3_unsupervised_reduction(): Dimentionalty reduction to counter multicollinearity
-* A4_unsupervised_association(): Association unsupervised analysis
-* A5_unsupervised_textmining(): Text mining for Topic determination
-* A6_unsupervised_network(): Network Analysis
-* A7_unsupervised_timeseries(): Time series detection
 
-#🛠️ Architecture & Modules (Supervised Clinical AI)
+# 🛠️ Architecture & Modules (Supervised Clinical AI)
 * B1_supervised_screening(): High-Sensitivity Diagnostic Triage.
 * B2_supervised_triage(): Multi-Class Severity Scoring.
 * B3_supervised_rare(): Imbalanced Event Handler (SMOTE-Lite for Rare Diseases).
-* B4_supervised_los(): Exact Length of Stay (LoS) Forecaster for BPJS/Hospital BPR.
-* B5_supervised_survival(): Time-to-Event Survival Engine (Kaplan-Meier & Cox).
-* B6_supervised_precision(): Pharmacogenomics & Precision Dosage Predictor.
-* B7_supervised_consensus(): Automated Ensemble Benchmark (Multidisciplinary AI Board).
-* B8_supervised_biomarker(): Native BIC-Driven Feature Selection (Cost-Effective Diagnostics).
-* B9_supervised_explain(): Explainable AI (XAI) / Local Patient SHAP Alternative.
 
 📖 Example
 This is a basic example which shows you how to deploy AFKAR's Clinical Machine Learning modules:
